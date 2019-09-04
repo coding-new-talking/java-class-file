@@ -175,4 +175,76 @@ public class ArrayInstruction {
 			return 1;
 		}
 	}
+	
+	public static class laload extends Instruction {
+		
+		public laload(U1[] codes, int offset) {
+			super(Mnemonic.laload, Opcode.laload, codes, offset, 0, 2);
+		}
+		
+		@Override
+		public int getLength() {
+			return 1;
+		}
+	}
+	
+	public static class lastore extends Instruction {
+		
+		public lastore(U1[] codes, int offset) {
+			super(Mnemonic.lastore, Opcode.lastore, codes, offset, 0, 3);
+		}
+		
+		@Override
+		public int getLength() {
+			return 1;
+		}
+	}
+	
+	public static class multianewarray extends Instruction {
+		
+		public multianewarray(U1[] codes, int offset) {
+			super(Mnemonic.multianewarray, Opcode.multianewarray, codes, offset, 2, -1);
+		}
+		
+		@Override
+		public int getLength() {
+			return 4;
+		}
+	}
+	
+	public static class newarray extends Instruction {
+		
+		public newarray(U1[] codes, int offset) {
+			super(Mnemonic.newarray, Opcode.newarray, codes, offset, 1, 1);
+		}
+		
+		@Override
+		public int getLength() {
+			return 2;
+		}
+	}
+	
+	public static class saload extends Instruction {
+		
+		public saload(U1[] codes, int offset) {
+			super(Mnemonic.saload, Opcode.saload, codes, offset, 0, 2);
+		}
+		
+		@Override
+		public int getLength() {
+			return 1;
+		}
+	}
+	
+	public static class sastore extends Instruction {
+		
+		public sastore(U1[] codes, int offset) {
+			super(Mnemonic.sastore, Opcode.sastore, codes, offset, 0, 3);
+		}
+		
+		@Override
+		public int getLength() {
+			return 1;
+		}
+	}
 }

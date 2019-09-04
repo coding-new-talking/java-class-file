@@ -31,4 +31,52 @@ public class ControlInstruction {
 			return 5;
 		}
 	}
+	
+	public static class jsr extends Instruction {
+		
+		public jsr(U1[] codes, int offset) {
+			super(Mnemonic.jsr, Opcode.jsr, codes, offset, 1, 0);
+		}
+		
+		@Override
+		public int getLength() {
+			return 3;
+		}
+	}
+	
+	public static class jsr_w extends Instruction {
+		
+		public jsr_w(U1[] codes, int offset) {
+			super(Mnemonic.jsr_w, Opcode.jsr_w, codes, offset, 1, 0);
+		}
+		
+		@Override
+		public int getLength() {
+			return 5;
+		}
+	}
+	
+	public static class ret extends Instruction {
+		
+		public ret(U1[] codes, int offset) {
+			super(Mnemonic.ret, Opcode.ret, codes, offset, 1, 0);
+		}
+		
+		@Override
+		public int getLength() {
+			return 2;
+		}
+	}
+	
+	public static class _return extends Instruction {
+		
+		public _return(U1[] codes, int offset) {
+			super(Mnemonic._return, Opcode._return, codes, offset, 0, 0);
+		}
+		
+		@Override
+		public int getLength() {
+			return 1;
+		}
+	}
 }

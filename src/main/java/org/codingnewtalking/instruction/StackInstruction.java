@@ -79,4 +79,40 @@ public class StackInstruction {
 			return 1;
 		}
 	}
+	
+	public static class pop extends Instruction {
+		
+		public pop(U1[] codes, int offset) {
+			super(Mnemonic.pop, Opcode.pop, codes, offset, 0, 1);
+		}
+		
+		@Override
+		public int getLength() {
+			return 1;
+		}
+	}
+	
+	public static class pop2 extends Instruction {
+		
+		public pop2(U1[] codes, int offset) {
+			super(Mnemonic.pop2, Opcode.pop2, codes, offset, 0, 2);
+		}
+		
+		@Override
+		public int getLength() {
+			return 1;
+		}
+	}
+	
+	public static class swap extends Instruction {
+		
+		public swap(U1[] codes, int offset) {
+			super(Mnemonic.swap, Opcode.swap, codes, offset, 0, 2);
+		}
+		
+		@Override
+		public int getLength() {
+			return 1;
+		}
+	}
 }

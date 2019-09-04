@@ -30,7 +30,7 @@ public class Opcode {
 	}
 	/*--------Constants--------*/
 
-	public static final int nop = 00;			//(0x00)
+	public static final int nop = 0;			//(0x00)
 	public static final int aconst_null = 1;	//(0x01)
 	public static final int iconst_m1 = 2;		//(0x02)
 	public static final int iconst_0 = 3;		//(0x03)
