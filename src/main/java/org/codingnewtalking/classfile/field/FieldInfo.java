@@ -106,11 +106,14 @@ public class FieldInfo {
 
 	@Override
 	public String toString() {
-		return "FieldInfo [getAccessFlags()=" + getAccessFlags() + ", getNameIndex()=" + getNameIndex()
+		String blank16 = "                ";
+		return "FieldInfo [getAccessFlags()=" + getAccessFlags() + ", \r\n"
+				+ blank16 + "getNameIndex()=" + getNameIndex()
 		 		+ ", getName()=" + getName()
 				+ ", getDescriptorIndex()=" + getDescriptorIndex()
-				+ ", getDescriptor()=" + getDescriptor()
-				+ ", getAttributesCount()=" + getAttributesCount()
-				+ ", getAttributes()=" + Arrays.toString(getAttributes()) + "]";
+				+ ", getDescriptor()=" + getDescriptor() + ", \r\n"
+				+ blank16 + "getAttributesCount()=" + getAttributesCount()
+				+ ", getAttributes()=" + Arrays.toString(getAttributes()) + "\r\n"
+				+ blank16 + "]";
 	}
 }

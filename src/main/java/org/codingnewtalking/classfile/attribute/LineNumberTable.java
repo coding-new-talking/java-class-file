@@ -1,10 +1,9 @@
 package org.codingnewtalking.classfile.attribute;
 
-import java.util.Arrays;
-
 import org.codingnewtalking.classfile.ConstantPool;
 import org.codingnewtalking.classfile.attribute.util.LineNumTable;
 import org.codingnewtalking.classfile.util.Length2;
+import org.codingnewtalking.util.ForUtils;
 
 /**
  * @author lixinjie
@@ -35,9 +34,21 @@ public class LineNumberTable extends AttributeInfo {
 	}
 
 	@Override
-	public String toString() {
-		return "LineNumberTable [getLineNumTableLength()=" + getLineNumTableLength() + ", getLineNumTables()="
-				+ Arrays.toString(getLineNumTables()) + "]";
+	public String toString(String baseBlank, String blankUnit, String blank4) {
+		return baseBlank
+				+ "LineNumberTable [getLineNumTableLength()=" + getLineNumTableLength() + ", getLineNumTables()=[\r\n"
+				+ toString(getLineNumTables(), baseBlank + blankUnit + blank4, blankUnit, blank4)
+				+ baseBlank + blankUnit + blank4 + "]\r\n"
+				+ baseBlank + blankUnit + "]";
 	}
 	
+	private String toString(LineNumTable[] lineNumTables, String baseBlank, String blankUnit, String blank4) {
+		StringBuilder builder = new StringBuilder();
+		ForUtils.each(lineNumTables.length, (index) -> {
+			builder.append(baseBlank)
+					.append(lineNumTables[index])
+					.append("\r\n");
+		});
+		return builder.toString();
+	}
 }

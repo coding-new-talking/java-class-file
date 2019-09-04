@@ -9,21 +9,25 @@ import org.codingnewtalking.classfile.util.Index2;
  */
 public class SourceFile extends AttributeInfo {
 
-	private Index2 sourcefileIndex;
+	private Index2 sourceFileIndex;
 	
 	public SourceFile(byte[] bytes, int offset, ConstantPool constantPool) {
 		super(bytes, offset, constantPool);
 	}
 	
-	public int getSourcefileIndex() {
-		if (sourcefileIndex == null) {
-			sourcefileIndex = new Index2(bytes, offset + 6);
+	public int getSourceFileIndex() {
+		if (sourceFileIndex == null) {
+			sourceFileIndex = new Index2(bytes, offset + 6);
 		}
-		return sourcefileIndex.getIndex();
+		return sourceFileIndex.getIndex();
+	}
+	
+	public String getSourceFile() {
+		return constantPool.getConstantUtf8String(getSourceFileIndex());
 	}
 
 	@Override
 	public String toString() {
-		return "SourceFile [getSourcefileIndex()=" + getSourcefileIndex() + "]";
+		return "SourceFile [getSourceFileIndex()=" + getSourceFileIndex() + ", getSourceFile()=" + getSourceFile() + "]";
 	}
 }

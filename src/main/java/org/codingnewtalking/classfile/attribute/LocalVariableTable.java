@@ -1,10 +1,9 @@
 package org.codingnewtalking.classfile.attribute;
 
-import java.util.Arrays;
-
 import org.codingnewtalking.classfile.ConstantPool;
 import org.codingnewtalking.classfile.attribute.util.LocalVarTable;
 import org.codingnewtalking.classfile.util.Length2;
+import org.codingnewtalking.util.ForUtils;
 
 /**
  * @author lixinjie
@@ -30,16 +29,27 @@ public class LocalVariableTable extends AttributeInfo {
 		if (localVarTables == null) {
 			localVarTables = new LocalVarTable[getLocalVarTableLength()];
 			for (int i = 0, len = localVarTables.length; i < len; i++) {
-				localVarTables[i] = new LocalVarTable(bytes, offset + 8 + i * 10);
+				localVarTables[i] = new LocalVarTable(bytes, offset + 8 + i * 10, constantPool);
 			}
 		}
 		return localVarTables;
 	}
 
 	@Override
-	public String toString() {
-		return "LocalVariableTable [getLocalVarTableLength()=" + getLocalVarTableLength() + ", getLocalVarTables()="
-				+ Arrays.toString(getLocalVarTables()) + "]";
+	public String toString(String baseBlank, String blankUnit, String blank4) {
+		return baseBlank
+				+ "LocalVariableTable [getLocalVarTableLength()=" + getLocalVarTableLength() + ", getLocalVarTables()=[\r\n"
+				+ toString(getLocalVarTables(), baseBlank + blankUnit + blank4, blankUnit, blank4)
+				+ baseBlank + blankUnit + blank4 + "]\r\n"
+				+ baseBlank + blankUnit + "]";
 	}
 	
+	private String toString(LocalVarTable[] localVarTables, String baseBlank, String blankUnit, String blank4) {
+		StringBuilder builder = new StringBuilder();
+		ForUtils.each(localVarTables.length, (index) -> {
+			builder.append(localVarTables[index].toString(baseBlank))
+					.append("\r\n");
+		});
+		return builder.toString();
+	}
 }

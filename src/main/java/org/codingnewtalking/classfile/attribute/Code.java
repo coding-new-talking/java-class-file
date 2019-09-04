@@ -9,6 +9,7 @@ import org.codingnewtalking.classfile.util.Count2;
 import org.codingnewtalking.classfile.util.Length2;
 import org.codingnewtalking.classfile.util.Length4;
 import org.codingnewtalking.classfile.util.Num2;
+import org.codingnewtalking.util.ForUtils;
 
 /**
  * @author lixinjie
@@ -97,11 +98,25 @@ public class Code extends AttributeInfo {
 	}
 
 	@Override
-	public String toString() {
-		return "Code [getMaxStack()=" + getMaxStack() + ", getMaxLocals()=" + getMaxLocals() + ", getCodeLength()="
-				+ getCodeLength() + ", getJvmCode()=" + getJvmCode() + ", getExceptionTableLength()="
-				+ getExceptionTableLength() + ", getExceptionTables()=" + Arrays.toString(getExceptionTables())
-				+ ", getAttributesCount()=" + getAttributesCount() + ", getAttributes()="
-				+ Arrays.toString(getAttributes()) + "]";
+	public String toString(String baseBlank, String blankUnit, String blank4) {
+		return baseBlank
+				+ "Code [getMaxStack()=" + getMaxStack() + ", getMaxLocals()=" + getMaxLocals() + ", getCodeLength()="
+				+ getCodeLength()+ ", \r\n"
+				+ baseBlank + blank4 + "getJvmCode()=" + getJvmCode()+ ", \r\n"
+				+ baseBlank + blank4 + "getExceptionTableLength()=" + getExceptionTableLength()
+				+ ", getExceptionTables()=" + Arrays.toString(getExceptionTables()) + ", \r\n"
+				+ baseBlank + blank4 + "getAttributesCount()=" + getAttributesCount() + ", getAttributes()=[\r\n"
+				+ toString(getAttributes(), baseBlank + blankUnit + blank4, blankUnit, blank4)
+				+ baseBlank + blank4 + "]\r\n"
+				+ baseBlank + "]";
+	}
+	
+	private String toString(AttributeInfo[] attributes, String baseBlank, String blankUnit, String blank4) {
+		StringBuilder builder = new StringBuilder();
+		ForUtils.each(attributes.length, (index) -> {
+			builder.append(attributes[index].toString(baseBlank, blankUnit, blank4))
+					.append("\r\n");
+		});
+		return builder.toString();
 	}
 }

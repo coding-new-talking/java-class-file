@@ -1,13 +1,12 @@
 package org.codingnewtalking.classfile.method;
 
-import java.util.Arrays;
-
 import org.codingnewtalking.classfile.ConstantPool;
 import org.codingnewtalking.classfile.attribute.AttributeInfo;
 import org.codingnewtalking.classfile.attribute.AttributeInfoBuilder;
 import org.codingnewtalking.classfile.util.Count2;
 import org.codingnewtalking.classfile.util.Index2;
 import org.codingnewtalking.util.ByteUtils;
+import org.codingnewtalking.util.ForUtils;
 
 /**
  * @author lixinjie
@@ -105,12 +104,26 @@ public class MethodInfo {
 	
 	@Override
 	public String toString() {
-		return "MethodInfo [getAccessFlags()=" + getAccessFlags() + ", getNameIndex()=" + getNameIndex()
+		String blank4 = "    ";
+		String blankUnit = "                 ";
+		return "MethodInfo [getAccessFlags()=" + getAccessFlags() + ", \r\n"
+				+ blankUnit + "getNameIndex()=" + getNameIndex()
 				+ ", getName()=" + getName()
 				+ ", getDescriptorIndex()=" + getDescriptorIndex()
-				+ ", getDescriptor()=" + getDescriptor()
-				+ ", getAttributesCount()=" + getAttributesCount()
-				+ ", getAttributes()=" + Arrays.toString(getAttributes()) + "]";
+				+ ", getDescriptor()=" + getDescriptor() + ", \r\n"
+				+ blankUnit + "getAttributesCount()=" + getAttributesCount()
+				+ ", getAttributes()=[\r\n"
+				+ toString(getAttributes(), blankUnit + blankUnit, blankUnit, blank4)
+				+ blankUnit + "]\r\n"
+				+ blankUnit + "]";
 	}
 	
+	private String toString(AttributeInfo[] attributes, String baseBlank, String blankUnit, String blank4) {
+		StringBuilder builder = new StringBuilder();
+		ForUtils.each(attributes.length, (index) -> {
+			builder.append(attributes[index].toString(baseBlank, blankUnit, blank4))
+					.append("\r\n");
+		});
+		return builder.toString();
+	}
 }

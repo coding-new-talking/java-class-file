@@ -37,8 +37,10 @@ public class MethodParameters extends AttributeInfo {
 	}
 
 	@Override
-	public String toString() {
-		return "MethodParameters [getParametersCount()=" + getParametersCount() + ", getParameters()="
-				+ Arrays.toString(getParameters()) + "]";
+	public String toString(String baseBlank, String blankUnit, String blank4) {
+		return baseBlank
+				+ "MethodParameters [getParametersCount()=" + getParametersCount() + ", getParameters()="
+				+ Arrays.toString(getParameters()) + "\r\n"
+				+ baseBlank + "]";
 	}
 }

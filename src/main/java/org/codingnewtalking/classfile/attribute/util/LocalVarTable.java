@@ -1,5 +1,6 @@
 package org.codingnewtalking.classfile.attribute.util;
 
+import org.codingnewtalking.classfile.ConstantPool;
 import org.codingnewtalking.classfile.util.Index2;
 import org.codingnewtalking.classfile.util.Length2;
 
@@ -11,6 +12,7 @@ public class LocalVarTable {
 	
 	private byte[] bytes;
 	private int offset;
+	private ConstantPool constantPool;
 	
 	private StartPc startPc;
 	private Length2 length;
@@ -18,9 +20,10 @@ public class LocalVarTable {
 	private Index2 descriptorIndex;
 	private Index2 index;
 	
-	public LocalVarTable(byte[] bytes, int offset) {
+	public LocalVarTable(byte[] bytes, int offset, ConstantPool constantPool) {
 		this.bytes = bytes;
 		this.offset = offset;
+		this.constantPool = constantPool;
 	}
 	
 	public int getStartPc() {
@@ -44,11 +47,19 @@ public class LocalVarTable {
 		return nameIndex.getIndex();
 	}
 	
+	public String getName() {
+		return constantPool.getConstantUtf8String(getNameIndex());
+	}
+	
 	public int getDescriptorIndex() {
 		if (descriptorIndex == null) {
 			descriptorIndex = new Index2(bytes, offset + 6);
 		}
 		return descriptorIndex.getIndex();
+	}
+	
+	public String getDescriptor() {
+		return constantPool.getConstantUtf8String(getDescriptorIndex());
 	}
 	
 	public int getIndex() {
@@ -58,10 +69,13 @@ public class LocalVarTable {
 		return index.getIndex();
 	}
 
-	@Override
-	public String toString() {
-		return "LocalVarTable [getStartPc()=" + getStartPc() + ", getLength()=" + getLength() + ", getNameIndex()="
-				+ getNameIndex() + ", getDescriptorIndex()=" + getDescriptorIndex() + ", getIndex()=" + getIndex()
-				+ "]";
+	public String toString(String baseBlank) {
+		String blank15 = "               ";
+		return baseBlank
+				+ "LocalVarTable [getStartPc()=" + getStartPc() + ", getLength()=" + getLength()
+				+ ", getNameIndex()=" + getNameIndex() + ", getName()=" + getName() + ", \r\n"
+				+ baseBlank + blank15 + "getDescriptorIndex()=" + getDescriptorIndex() + ", getDescriptor()=" + getDescriptor() + ", \r\n"
+				+ baseBlank + blank15 + "getIndex()=" + getIndex() + "\r\n"
+				+ baseBlank + blank15 + "]";
 	}
 }

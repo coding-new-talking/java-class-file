@@ -52,4 +52,8 @@ public abstract class AttributeInfo {
 	public String getAttributeName() {
 		return constantPool.getConstantUtf8String(getAttributeNameIndex());
 	}
+	
+	public String toString(String baseBlank, String blankUnit, String blank4) {
+		return "";
+	}
 }

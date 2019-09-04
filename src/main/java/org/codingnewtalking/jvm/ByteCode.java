@@ -8,7 +8,7 @@ import org.codingnewtalking.classfile.field.FieldInfo;
 import org.codingnewtalking.classfile.method.MethodInfo;
 import org.codingnewtalking.util.AccessFlagsUtils;
 import org.codingnewtalking.util.ArrayUtils;
-import org.codingnewtalking.util.ForLoopUtils;
+import org.codingnewtalking.util.ForUtils;
 import org.codingnewtalking.util.HexUtils;
 
 /**
@@ -78,7 +78,7 @@ public class ByteCode {
 	public String[] getInterfaces() {
 		int[] classIndexes = getClassFile().getInterfaces().getClassIndexes();
 		String[] classNames = new String[classIndexes.length];
-		ForLoopUtils.each(classIndexes.length, (index) -> {
+		ForUtils.each(classIndexes.length, (index) -> {
 			classNames[index] = getConstantPool().getConstantClassName(classIndexes[index]);
 		});
 		return classNames;
