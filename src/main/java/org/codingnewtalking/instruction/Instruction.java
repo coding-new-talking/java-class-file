@@ -26,4 +26,16 @@ public abstract class Instruction {
 	
 	public abstract int getLength();
 	
+	@Override
+	public String toString() {
+		String blank = "		";
+		if (mnemonic.length() > 9) {
+			blank = "	";
+		}
+		return offset + ": " + mnemonic + blank + embeddedOperandsToString();
+	}
+	
+	protected String embeddedOperandsToString() {
+		return "";
+	}
 }

@@ -1,6 +1,7 @@
 package org.codingnewtalking.instruction;
 
 import org.codingnewtalking.unsigned.U1;
+import org.codingnewtalking.util.ByteUtils;
 
 /**
  * @author lixinjie
@@ -17,6 +18,15 @@ public class ByteInstruction {
 		@Override
 		public int getLength() {
 			return 2;
+		}
+		
+		public int getImmediateValue() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getImmediateValue() + "	// int类型的数值，一个字节的有符号数";
 		}
 	}
 }

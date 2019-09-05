@@ -1,33 +1,11 @@
 package org.codingnewtalking.instruction;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 /**
  * @author lixinjie
  * @since 2019-09-04
  */
 public class Opcode {
 
-	public static void main(String[] args) throws Exception {
-		Files.readAllLines(Paths.get("C:\\Users\\DELL\\Desktop\\op.txt"))
-				.forEach((line) -> {
-					if (line.isEmpty()) {
-						System.out.println();
-					} else {
-						String[] parts = line.split(" ");
-						if (parts.length == 1) {
-							System.out.println("/*--------" + parts[0] + "--------*/");
-						} else {
-							System.out.print("public static final String ");
-							System.out.print(parts[2]);
-							System.out.print(" = ");
-							System.out.print("\"" + parts[2] + "\"");
-							System.out.println(";");
-						}
-					}
-				});
-	}
 	/*--------Constants--------*/
 
 	public static final int nop = 0;			//(0x00)

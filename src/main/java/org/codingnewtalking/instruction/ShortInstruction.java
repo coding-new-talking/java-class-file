@@ -1,6 +1,7 @@
 package org.codingnewtalking.instruction;
 
 import org.codingnewtalking.unsigned.U1;
+import org.codingnewtalking.util.ByteUtils;
 
 /**
  * @author lixinjie
@@ -17,6 +18,15 @@ public class ShortInstruction {
 		@Override
 		public int getLength() {
 			return 3;
+		}
+		
+		public int getIntermediateValue() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getIntermediateValue() + "	// int类型数值，两个字节的有符号数";
 		}
 	}
 }

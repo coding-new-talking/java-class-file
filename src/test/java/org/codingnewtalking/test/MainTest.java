@@ -20,7 +20,7 @@ public class MainTest {
 		String path = project + "\\target\\test-classes\\org\\codingnewtalking\\test\\Broccoli.class";
 		path = project + "\\target\\test-classes\\org\\codingnewtalking\\test\\Apple.class";
 		//path = "C:\\Users\\Administrator\\Desktop\\AnnotationMetadataReadingVisitor.class";
-		//path = "C:\\Users\\DELL\\Desktop\\AnnotationMetadataReadingVisitor.class";
+		path = "C:\\Users\\DELL\\Desktop\\AnnotationMetadataReadingVisitor.class";
 		byte[] bytes = Files.readAllBytes(Paths.get(path));
 		ClassFile classFile = new ClassFile(bytes);
 		StringBuilder csb = new StringBuilder();

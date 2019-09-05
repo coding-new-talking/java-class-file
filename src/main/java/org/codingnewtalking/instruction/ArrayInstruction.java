@@ -1,6 +1,7 @@
 package org.codingnewtalking.instruction;
 
 import org.codingnewtalking.unsigned.U1;
+import org.codingnewtalking.util.ByteUtils;
 
 /**
  * @author lixinjie
@@ -35,12 +36,21 @@ public class ArrayInstruction {
 	public static class anewarray extends Instruction {
 		
 		public anewarray(U1[] codes, int offset) {
-			super(Mnemonic.anewarray, Opcode.anewarray, codes, offset, 2, 1);
+			super(Mnemonic.anewarray, Opcode.anewarray, codes, offset, 1, 1);
 		}
 		
 		@Override
 		public int getLength() {
 			return 3;
+		}
+		
+		public int getComponentTypeIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getComponentTypeIndex() + "	// 常量池中的索引，表示数组的元素类型";
 		}
 	}
 	
@@ -210,6 +220,19 @@ public class ArrayInstruction {
 		public int getLength() {
 			return 4;
 		}
+		
+		public int getComponentTypeIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		public int getDimensions() {
+			return codes[offset + 3].getValue();
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getComponentTypeIndex() + " " + getDimensions() + "	// 常量池中的索引，表示数组的元素类型；数组的维度";
+		}
 	}
 	
 	public static class newarray extends Instruction {
@@ -221,6 +244,38 @@ public class ArrayInstruction {
 		@Override
 		public int getLength() {
 			return 2;
+		}
+		
+		public int getComponentType() {
+			return codes[offset + 1].getValue();
+		}
+		
+		public String getComponentTypeString() {
+			int componentType = getComponentType();
+			switch (componentType) {
+				case 4:
+					return "boolean";
+				case 5:
+					return "char";
+				case 6:
+					return "float";
+				case 7:
+					return "double";
+				case 8:
+					return "byte";
+				case 9:
+					return "short";
+				case 10:
+					return "int";
+				case 11:
+					return "long";
+			}
+			throw new IllegalArgumentException("illegal component type '" + componentType + "'.");
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getComponentType() + "	// " + getComponentTypeString() + "，数组的元素类型";
 		}
 	}
 	

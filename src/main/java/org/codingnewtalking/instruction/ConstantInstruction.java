@@ -1,6 +1,7 @@
 package org.codingnewtalking.instruction;
 
 import org.codingnewtalking.unsigned.U1;
+import org.codingnewtalking.util.ByteUtils;
 
 /**
  * @author lixinjie
@@ -18,6 +19,15 @@ public class ConstantInstruction {
 		public int getLength() {
 			return 2;
 		}
+		
+		public int getIndex() {
+			return codes[offset + 1].getValue();
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 常量池中的索引";
+		}
 	}
 	
 	public static class ldc_w extends Instruction {
@@ -30,6 +40,15 @@ public class ConstantInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 常量池中的索引";
+		}
 	}
 	
 	public static class ldc2_w extends Instruction {
@@ -41,6 +60,15 @@ public class ConstantInstruction {
 		@Override
 		public int getLength() {
 			return 3;
+		}
+		
+		public int getIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 常量池中的索引，对应的值只能是long或double类型";
 		}
 	}
 	

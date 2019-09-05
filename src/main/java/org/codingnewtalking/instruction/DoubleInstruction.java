@@ -126,6 +126,18 @@ public class DoubleInstruction {
 		public int getLength() {
 			return 2;
 		}
+		
+		public int getIndex() {
+			return codes[offset + 1].getValue();
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 本地变量表的索引，一个字节的无符号数";
+			//该索引及其下一个索引共同对应一个double值
+			//即double值占两个连续的索引，但读写时却只使用第一个索引
+			//long值也是这样的，可能这是历史遗留问题
+		}
 	}
 	
 	public static class dload_0 extends Instruction {
@@ -233,6 +245,15 @@ public class DoubleInstruction {
 		@Override
 		public int getLength() {
 			return 2;
+		}
+		
+		public int getIndex() {
+			return codes[offset + 1].getValue();
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 本地变量表的索引，一个字节的无符号数";
 		}
 	}
 	

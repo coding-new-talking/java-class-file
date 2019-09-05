@@ -126,12 +126,24 @@ public class LongInstruction {
 		public int getLength() {
 			return 2;
 		}
+		
+		public int getIndex() {
+			return codes[offset + 1].getValue();
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 本地变量表的索引，一个字节的无符号数";
+			//该索引及其下一个索引共同对应一个long值
+			//即long值占两个连续的索引，但读写时却只使用第一个索引
+			//double值也是这样的，可能这是历史遗留问题
+		}
 	}
 	
 	public static class lload_0 extends Instruction {
 		
 		public lload_0(U1[] codes, int offset) {
-			super(Mnemonic.lload_0, Opcode.lload_0, codes, offset, 1, 0);
+			super(Mnemonic.lload_0, Opcode.lload_0, codes, offset, 0, 0);
 		}
 		
 		@Override
@@ -143,7 +155,7 @@ public class LongInstruction {
 	public static class lload_1 extends Instruction {
 		
 		public lload_1(U1[] codes, int offset) {
-			super(Mnemonic.lload_1, Opcode.lload_1, codes, offset, 1, 0);
+			super(Mnemonic.lload_1, Opcode.lload_1, codes, offset, 0, 0);
 		}
 		
 		@Override
@@ -155,7 +167,7 @@ public class LongInstruction {
 	public static class lload_2 extends Instruction {
 		
 		public lload_2(U1[] codes, int offset) {
-			super(Mnemonic.lload_2, Opcode.lload_2, codes, offset, 1, 0);
+			super(Mnemonic.lload_2, Opcode.lload_2, codes, offset, 0, 0);
 		}
 		
 		@Override
@@ -167,7 +179,7 @@ public class LongInstruction {
 	public static class lload_3 extends Instruction {
 		
 		public lload_3(U1[] codes, int offset) {
-			super(Mnemonic.lload_3, Opcode.lload_3, codes, offset, 1, 0);
+			super(Mnemonic.lload_3, Opcode.lload_3, codes, offset, 0, 0);
 		}
 		
 		@Override
@@ -236,10 +248,10 @@ public class LongInstruction {
 		}
 	}
 	
-	public static class ishl extends Instruction {
+	public static class lshl extends Instruction {
 		
-		public ishl(U1[] codes, int offset) {
-			super(Mnemonic.ishl, Opcode.ishl, codes, offset, 0, 2);
+		public lshl(U1[] codes, int offset) {
+			super(Mnemonic.lshl, Opcode.lshl, codes, offset, 0, 2);
 		}
 		
 		@Override
@@ -248,10 +260,10 @@ public class LongInstruction {
 		}
 	}
 	
-	public static class ishr extends Instruction {
+	public static class lshr extends Instruction {
 		
-		public ishr(U1[] codes, int offset) {
-			super(Mnemonic.ishr, Opcode.ishr, codes, offset, 0, 2);
+		public lshr(U1[] codes, int offset) {
+			super(Mnemonic.lshr, Opcode.lshr, codes, offset, 0, 2);
 		}
 		
 		@Override
@@ -260,22 +272,31 @@ public class LongInstruction {
 		}
 	}
 	
-	public static class istore extends Instruction {
+	public static class lstore extends Instruction {
 		
-		public istore(U1[] codes, int offset) {
-			super(Mnemonic.istore, Opcode.istore, codes, offset, 1, 1);
+		public lstore(U1[] codes, int offset) {
+			super(Mnemonic.lstore, Opcode.lstore, codes, offset, 1, 1);
 		}
 		
 		@Override
 		public int getLength() {
 			return 2;
 		}
+		
+		public int getIndex() {
+			return codes[offset + 1].getValue();
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 本地变量表的索引，一个字节的无符号数";
+		}
 	}
 	
-	public static class istore_0 extends Instruction {
+	public static class lstore_0 extends Instruction {
 		
-		public istore_0(U1[] codes, int offset) {
-			super(Mnemonic.istore_0, Opcode.istore_0, codes, offset, 0, 1);
+		public lstore_0(U1[] codes, int offset) {
+			super(Mnemonic.lstore_0, Opcode.lstore_0, codes, offset, 0, 1);
 		}
 		
 		@Override
@@ -284,10 +305,10 @@ public class LongInstruction {
 		}
 	}
 	
-	public static class istore_1 extends Instruction {
+	public static class lstore_1 extends Instruction {
 		
-		public istore_1(U1[] codes, int offset) {
-			super(Mnemonic.istore_1, Opcode.istore_1, codes, offset, 0, 1);
+		public lstore_1(U1[] codes, int offset) {
+			super(Mnemonic.lstore_1, Opcode.lstore_1, codes, offset, 0, 1);
 		}
 		
 		@Override
@@ -296,10 +317,10 @@ public class LongInstruction {
 		}
 	}
 	
-	public static class istore_2 extends Instruction {
+	public static class lstore_2 extends Instruction {
 		
-		public istore_2(U1[] codes, int offset) {
-			super(Mnemonic.istore_2, Opcode.istore_2, codes, offset, 0, 1);
+		public lstore_2(U1[] codes, int offset) {
+			super(Mnemonic.lstore_2, Opcode.lstore_2, codes, offset, 0, 1);
 		}
 		
 		@Override
@@ -308,10 +329,10 @@ public class LongInstruction {
 		}
 	}
 	
-	public static class istore_3 extends Instruction {
+	public static class lstore_3 extends Instruction {
 		
-		public istore_3(U1[] codes, int offset) {
-			super(Mnemonic.istore_3, Opcode.istore_3, codes, offset, 0, 1);
+		public lstore_3(U1[] codes, int offset) {
+			super(Mnemonic.lstore_3, Opcode.lstore_3, codes, offset, 0, 1);
 		}
 		
 		@Override
@@ -320,10 +341,10 @@ public class LongInstruction {
 		}
 	}
 	
-	public static class isub extends Instruction {
+	public static class lsub extends Instruction {
 		
-		public isub(U1[] codes, int offset) {
-			super(Mnemonic.isub, Opcode.isub, codes, offset, 0, 2);
+		public lsub(U1[] codes, int offset) {
+			super(Mnemonic.lsub, Opcode.lsub, codes, offset, 0, 2);
 		}
 		
 		@Override
@@ -332,10 +353,10 @@ public class LongInstruction {
 		}
 	}
 	
-	public static class iushr extends Instruction {
+	public static class lushr extends Instruction {
 		
-		public iushr(U1[] codes, int offset) {
-			super(Mnemonic.iushr, Opcode.iushr, codes, offset, 0, 2);
+		public lushr(U1[] codes, int offset) {
+			super(Mnemonic.lushr, Opcode.lushr, codes, offset, 0, 2);
 		}
 		
 		@Override
@@ -344,10 +365,10 @@ public class LongInstruction {
 		}
 	}
 	
-	public static class ixor extends Instruction {
+	public static class lxor extends Instruction {
 		
-		public ixor(U1[] codes, int offset) {
-			super(Mnemonic.ixor, Opcode.ixor, codes, offset, 0, 2);
+		public lxor(U1[] codes, int offset) {
+			super(Mnemonic.lxor, Opcode.lxor, codes, offset, 0, 2);
 		}
 		
 		@Override

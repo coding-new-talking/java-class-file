@@ -1,6 +1,7 @@
 package org.codingnewtalking.instruction;
 
 import org.codingnewtalking.unsigned.U1;
+import org.codingnewtalking.util.ByteUtils;
 
 /**
  * @author lixinjie
@@ -210,6 +211,15 @@ public class IntInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
+		}
 	}
 	
 	public static class if_icmpne extends Instruction {
@@ -221,6 +231,15 @@ public class IntInstruction {
 		@Override
 		public int getLength() {
 			return 3;
+		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
 		}
 	}
 	
@@ -234,6 +253,15 @@ public class IntInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
+		}
 	}
 	
 	public static class if_icmpge extends Instruction {
@@ -245,6 +273,15 @@ public class IntInstruction {
 		@Override
 		public int getLength() {
 			return 3;
+		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
 		}
 	}
 	
@@ -258,6 +295,15 @@ public class IntInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
+		}
 	}
 	
 	public static class if_icmple extends Instruction {
@@ -269,6 +315,15 @@ public class IntInstruction {
 		@Override
 		public int getLength() {
 			return 3;
+		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
 		}
 	}
 	
@@ -282,6 +337,15 @@ public class IntInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
+		}
 	}
 	
 	public static class ifne extends Instruction {
@@ -293,6 +357,15 @@ public class IntInstruction {
 		@Override
 		public int getLength() {
 			return 3;
+		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
 		}
 	}
 	
@@ -306,6 +379,15 @@ public class IntInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
+		}
 	}
 	
 	public static class ifge extends Instruction {
@@ -317,6 +399,15 @@ public class IntInstruction {
 		@Override
 		public int getLength() {
 			return 3;
+		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
 		}
 	}
 	
@@ -330,6 +421,15 @@ public class IntInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
+		}
 	}
 	
 	public static class ifle extends Instruction {
@@ -341,6 +441,15 @@ public class IntInstruction {
 		@Override
 		public int getLength() {
 			return 3;
+		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
 		}
 	}
 	
@@ -354,6 +463,19 @@ public class IntInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getIndex() {
+			return codes[offset + 1].getValue();
+		}
+		
+		public int getImmediateValue() {
+			return ByteUtils.toSigned(codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + " " + getImmediateValue() + "	// 本地变量表索引，一个字节的无符号数；int类型数值增量，一个字节的有符号数";
+		}
 	}
 	
 	public static class iload extends Instruction {
@@ -365,6 +487,15 @@ public class IntInstruction {
 		@Override
 		public int getLength() {
 			return 2;
+		}
+		
+		public int getIndex() {
+			return codes[offset + 1].getValue();
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 本地变量表的索引，一个字节的无符号数";
 		}
 	}
 	
@@ -476,10 +607,10 @@ public class IntInstruction {
 		}
 	}
 	
-	public static class lshl extends Instruction {
+	public static class ishl extends Instruction {
 		
-		public lshl(U1[] codes, int offset) {
-			super(Mnemonic.lshl, Opcode.lshl, codes, offset, 0, 2);
+		public ishl(U1[] codes, int offset) {
+			super(Mnemonic.ishl, Opcode.ishl, codes, offset, 0, 2);
 		}
 		
 		@Override
@@ -488,10 +619,10 @@ public class IntInstruction {
 		}
 	}
 	
-	public static class lshr extends Instruction {
+	public static class ishr extends Instruction {
 		
-		public lshr(U1[] codes, int offset) {
-			super(Mnemonic.lshr, Opcode.lshr, codes, offset, 0, 2);
+		public ishr(U1[] codes, int offset) {
+			super(Mnemonic.ishr, Opcode.ishr, codes, offset, 0, 2);
 		}
 		
 		@Override
@@ -500,22 +631,31 @@ public class IntInstruction {
 		}
 	}
 	
-	public static class lstore extends Instruction {
+	public static class istore extends Instruction {
 		
-		public lstore(U1[] codes, int offset) {
-			super(Mnemonic.lstore, Opcode.lstore, codes, offset, 1, 1);
+		public istore(U1[] codes, int offset) {
+			super(Mnemonic.istore, Opcode.istore, codes, offset, 1, 1);
 		}
 		
 		@Override
 		public int getLength() {
 			return 2;
 		}
+		
+		public int getIndex() {
+			return codes[offset + 1].getValue();
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 本地变量表的索引，一个字节的无符号数";
+		}
 	}
 	
-	public static class lstore_0 extends Instruction {
+	public static class istore_0 extends Instruction {
 		
-		public lstore_0(U1[] codes, int offset) {
-			super(Mnemonic.lstore_0, Opcode.lstore_0, codes, offset, 0, 1);
+		public istore_0(U1[] codes, int offset) {
+			super(Mnemonic.istore_0, Opcode.istore_0, codes, offset, 0, 1);
 		}
 		
 		@Override
@@ -524,10 +664,10 @@ public class IntInstruction {
 		}
 	}
 	
-	public static class lstore_1 extends Instruction {
+	public static class istore_1 extends Instruction {
 		
-		public lstore_1(U1[] codes, int offset) {
-			super(Mnemonic.lstore_1, Opcode.lstore_1, codes, offset, 0, 1);
+		public istore_1(U1[] codes, int offset) {
+			super(Mnemonic.istore_1, Opcode.istore_1, codes, offset, 0, 1);
 		}
 		
 		@Override
@@ -536,10 +676,10 @@ public class IntInstruction {
 		}
 	}
 	
-	public static class lstore_2 extends Instruction {
+	public static class istore_2 extends Instruction {
 		
-		public lstore_2(U1[] codes, int offset) {
-			super(Mnemonic.lstore_2, Opcode.lstore_2, codes, offset, 0, 1);
+		public istore_2(U1[] codes, int offset) {
+			super(Mnemonic.istore_2, Opcode.istore_2, codes, offset, 0, 1);
 		}
 		
 		@Override
@@ -548,10 +688,10 @@ public class IntInstruction {
 		}
 	}
 	
-	public static class lstore_3 extends Instruction {
+	public static class istore_3 extends Instruction {
 		
-		public lstore_3(U1[] codes, int offset) {
-			super(Mnemonic.lstore_3, Opcode.lstore_3, codes, offset, 0, 1);
+		public istore_3(U1[] codes, int offset) {
+			super(Mnemonic.istore_3, Opcode.istore_3, codes, offset, 0, 1);
 		}
 		
 		@Override
@@ -560,10 +700,10 @@ public class IntInstruction {
 		}
 	}
 	
-	public static class lsub extends Instruction {
+	public static class isub extends Instruction {
 		
-		public lsub(U1[] codes, int offset) {
-			super(Mnemonic.lsub, Opcode.lsub, codes, offset, 0, 2);
+		public isub(U1[] codes, int offset) {
+			super(Mnemonic.isub, Opcode.isub, codes, offset, 0, 2);
 		}
 		
 		@Override
@@ -572,10 +712,10 @@ public class IntInstruction {
 		}
 	}
 	
-	public static class lushr extends Instruction {
+	public static class iushr extends Instruction {
 		
-		public lushr(U1[] codes, int offset) {
-			super(Mnemonic.lushr, Opcode.lushr, codes, offset, 0, 2);
+		public iushr(U1[] codes, int offset) {
+			super(Mnemonic.iushr, Opcode.iushr, codes, offset, 0, 2);
 		}
 		
 		@Override
@@ -584,10 +724,10 @@ public class IntInstruction {
 		}
 	}
 	
-	public static class lxor extends Instruction {
+	public static class ixor extends Instruction {
 		
-		public lxor(U1[] codes, int offset) {
-			super(Mnemonic.lxor, Opcode.lxor, codes, offset, 0, 2);
+		public ixor(U1[] codes, int offset) {
+			super(Mnemonic.ixor, Opcode.ixor, codes, offset, 0, 2);
 		}
 		
 		@Override

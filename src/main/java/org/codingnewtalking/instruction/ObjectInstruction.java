@@ -1,6 +1,7 @@
 package org.codingnewtalking.instruction;
 
 import org.codingnewtalking.unsigned.U1;
+import org.codingnewtalking.util.ByteUtils;
 
 /**
  * @author lixinjie
@@ -29,6 +30,15 @@ public class ObjectInstruction {
 		@Override
 		public int getLength() {
 			return 2;
+		}
+		
+		public int getIndex() {
+			return codes[offset + 1].getValue();
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 本地变量表的索引，一个字节的无符号数";
 		}
 	}
 	
@@ -102,6 +112,15 @@ public class ObjectInstruction {
 		public int getLength() {
 			return 2;
 		}
+		
+		public int getIndex() {
+			return codes[offset + 1].getValue();
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 本地变量表的索引，一个字节的无符号数";
+		}
 	}
 	
 	public static class astore_0 extends Instruction {
@@ -174,6 +193,15 @@ public class ObjectInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 常量池中的索引，表示一个引用类型";
+		}
 	}
 	
 	public static class getfield extends Instruction {
@@ -185,6 +213,15 @@ public class ObjectInstruction {
 		@Override
 		public int getLength() {
 			return 3;
+		}
+		
+		public int getIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 常量池中的索引，表示一个字段类型";
 		}
 	}
 	
@@ -198,6 +235,15 @@ public class ObjectInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 常量池中的索引，表示一个字段类型";
+		}
 	}
 	
 	public static class if_acmpeq extends Instruction {
@@ -209,6 +255,15 @@ public class ObjectInstruction {
 		@Override
 		public int getLength() {
 			return 3;
+		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
 		}
 	}
 	
@@ -222,6 +277,15 @@ public class ObjectInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
+		}
 	}
 	
 	public static class ifnonnull extends Instruction {
@@ -233,6 +297,15 @@ public class ObjectInstruction {
 		@Override
 		public int getLength() {
 			return 3;
+		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
 		}
 	}
 	
@@ -246,6 +319,15 @@ public class ObjectInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getBranchoffset() {
+			return ByteUtils.toSigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return getBranchoffset() + "	// 相对于本条指令的偏移量，是两个字节的有符号数";
+		}
 	}
 	
 	public static class _instanceof extends Instruction {
@@ -257,6 +339,15 @@ public class ObjectInstruction {
 		@Override
 		public int getLength() {
 			return 3;
+		}
+		
+		public int getIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 常量池中的索引，表示一个引用类型";
 		}
 	}
 	
@@ -270,6 +361,15 @@ public class ObjectInstruction {
 		public int getLength() {
 			return 5;
 		}
+		
+		public int getIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 常量池中的索引，表示一个方法句柄类型";
+		}
 	}
 	
 	public static class invokeinterface extends Instruction {
@@ -281,6 +381,15 @@ public class ObjectInstruction {
 		@Override
 		public int getLength() {
 			return 5;
+		}
+		
+		public int getIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 常量池中的索引，表示一个接口方法类型";
 		}
 	}
 	
@@ -294,6 +403,15 @@ public class ObjectInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 常量池中的索引，表示一个方法或接口方法类型";
+		}
 	}
 	
 	public static class invokestatic extends Instruction {
@@ -306,6 +424,15 @@ public class ObjectInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 常量池中的索引，表示一个方法或接口方法类型";
+		}
 	}
 	
 	public static class invokevirtual extends Instruction {
@@ -317,6 +444,15 @@ public class ObjectInstruction {
 		@Override
 		public int getLength() {
 			return 3;
+		}
+		
+		public int getIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 常量池中的索引，表示一个方法类型";
 		}
 	}
 	
@@ -354,6 +490,16 @@ public class ObjectInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 常量池中的索引，表示一个类或接口类型，最终会产生一个类类型";
+			//new指令并不能完整的创建一个新实例，必须要等到实例的初始化方法执行完成后，实例的创建才算完整
+		}
 	}
 	
 	public static class putfield extends Instruction {
@@ -366,6 +512,15 @@ public class ObjectInstruction {
 		public int getLength() {
 			return 3;
 		}
+		
+		public int getIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 常量池中的索引，表示一个字段类型";
+		}
 	}
 	
 	public static class putstatic extends Instruction {
@@ -377,6 +532,15 @@ public class ObjectInstruction {
 		@Override
 		public int getLength() {
 			return 3;
+		}
+		
+		public int getIndex() {
+			return ByteUtils.toUnsigned(codes[offset + 1].getByte(), codes[offset + 2].getByte());
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 常量池中的索引，表示一个字段类型";
 		}
 	}
 }

@@ -102,7 +102,7 @@ public class Code extends AttributeInfo {
 		return baseBlank
 				+ "Code [getMaxStack()=" + getMaxStack() + ", getMaxLocals()=" + getMaxLocals() + ", getCodeLength()="
 				+ getCodeLength()+ ", \r\n"
-				+ baseBlank + blank4 + "getJvmCode()=" + getJvmCode()+ ", \r\n"
+				+ baseBlank + blank4 + "getJvmCode()=" + getJvmCode().toString(baseBlank + blank4 + blank4, blank4) + ", \r\n"
 				+ baseBlank + blank4 + "getExceptionTableLength()=" + getExceptionTableLength()
 				+ ", getExceptionTables()=" + Arrays.toString(getExceptionTables()) + ", \r\n"
 				+ baseBlank + blank4 + "getAttributesCount()=" + getAttributesCount() + ", getAttributes()=[\r\n"

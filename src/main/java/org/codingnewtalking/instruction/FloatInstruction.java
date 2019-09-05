@@ -138,6 +138,15 @@ public class FloatInstruction {
 		public int getLength() {
 			return 2;
 		}
+		
+		public int getIndex() {
+			return codes[offset + 1].getValue();
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 本地变量表的索引，一个字节的无符号数";
+		}
 	}
 	
 	public static class fload_0 extends Instruction {
@@ -245,6 +254,15 @@ public class FloatInstruction {
 		@Override
 		public int getLength() {
 			return 1;
+		}
+		
+		public int getIndex() {
+			return codes[offset + 1].getValue();
+		}
+		
+		@Override
+		protected String embeddedOperandsToString() {
+			return "#" + getIndex() + "	// 本地变量表的索引，一个字节的无符号数";
 		}
 	}
 	
